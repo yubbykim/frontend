@@ -21,6 +21,7 @@ function Activity() {
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("Here")
 
     const request = new Request("/activities", {
       method: "post",
@@ -30,7 +31,7 @@ function Activity() {
         profileId: params.id,
       }),
       headers: {
-        Accept: "application/json, text/plain, */*",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
@@ -41,7 +42,7 @@ function Activity() {
       })
 
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.matchedProfile) redirect("/Knot/" + res.matchedProfile._id);
         else redirect("/submitted/" + res.profileId);
       })
@@ -56,44 +57,46 @@ function Activity() {
       <header className="App-header">
         <form onSubmit={handleClick}>
           <h1>What are you looking for?</h1>
-          <TextField
-            id="interest"
-            label="interest"
-            variant="outlined"
-            value={interest}
-            onChange={(e) => setInterest(e.target.value)}
-          />
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              id="skill"
-            >
-              {" "}
-              <Stack direction="row">
-                <FormControlLabel
-                  value="Beginner"
-                  control={<Radio />}
-                  name="skill"
-                  label="Beginner"
-                  onChange={(e) => setSkill(e.target.value)}
-                />
-                <FormControlLabel
-                  value="Intermediate"
-                  control={<Radio />}
-                  label="Intermediate"
-                  name="skill"
-                  onChange={(e) => setSkill(e.target.value)}
-                />
-                <FormControlLabel
-                  value="Advanced"
-                  control={<Radio />}
-                  label="Advanced"
-                  name="skill"
-                  onChange={(e) => setSkill(e.target.value)}
-                />
-              </Stack>
-            </RadioGroup>
-          </FormControl>
+          <div className="form-container">
+            <TextField
+              id="interest"
+              label="interest"
+              variant="outlined"
+              value={interest}
+              onChange={(e) => setInterest(e.target.value)}
+            />
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                id="skill"
+              >
+                {" "}
+                <Stack direction="row">
+                  <FormControlLabel
+                    value="Beginner"
+                    control={<Radio />}
+                    name="skill"
+                    label="Beginner"
+                    onChange={(e) => setSkill(e.target.value)}
+                  />
+                  <FormControlLabel
+                    value="Intermediate"
+                    control={<Radio />}
+                    label="Intermediate"
+                    name="skill"
+                    onChange={(e) => setSkill(e.target.value)}
+                  />
+                  <FormControlLabel
+                    value="Advanced"
+                    control={<Radio />}
+                    label="Advanced"
+                    name="skill"
+                    onChange={(e) => setSkill(e.target.value)}
+                  />
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          </div>
 
           <Button variant="contained" type="submit">
             Submit Tie Request!
