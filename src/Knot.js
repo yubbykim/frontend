@@ -1,63 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import logo from "./logo.svg";
+import "./App.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
 
-const loginInfo = {
-  "name": "yubby kim",
-  "email": "john-0904@hotmail.com",
-  "password": "yubbykim",
-  "phone_number": 6824452890,
-  "location": "coquitlam",
-  "bio": "i like solar panels"
-}
+import { Link, useParams } from "react-router-dom";
 
-const handleClick = () => {
-  console.log("sending request")
-  const request = new Request("http://localhost:3000/profiles", {
+function Knot() {
+  const params = useParams();
+  const [partner, setPartner] = React.useState("");
+  const [number, setNumber] = React.useState("");
+  const request = new Request("/profiles/" + params.id, {
     method: "get",
-    body: JSON.stringify(loginInfo),
     headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json"
-    }
-});
-
-fetch(request)
-    .then(res => {
-        if (res.status === 201) {
-          console.log("successful!")
-            return res.json()
-        }
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
+  fetch(request)
+    .then((res) => {
+      return res.json();
     })
 
-    .catch(error => {
-        console.log(error);
+    .then((res) => {
+      console.log(res);
+      setPartner(res.name);
+      setNumber(res.phone_number);
+    })
+
+    .catch((error) => {
+      console.log(error);
     });
-}
 
-
-function Onboard() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>It's a Knot!</h1>
         <p>
-         Onboard!!!!!
+          {partner}
+          </p>
+          <h1>   </h1>
+          <p>
+          {number}
         </p>
-        <TextField id="outlined-basic" label="Name" variant="outlined" />
-        <Button variant="contained" onClick={handleClick}>Onboard!</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
 }
 
-export default Onboard;
+export default Knot;

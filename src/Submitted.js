@@ -10,12 +10,13 @@ function Submitted() {
     <div className="App">
       <div className="App-header">
         <h1>Submitted!!!!!</h1>
-        <p>To Knot!!!</p>
 
         <Link to={"/activity/" + params.id}> &lt; </Link>
       </div>
     </div>
   );
 }
+
+
 
 export default Submitted;

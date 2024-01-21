@@ -37,22 +37,14 @@ function Activity() {
 
     fetch(request)
       .then((res) => {
-        if (res.status === 201) {
-          console.log("successful!");
-
-          // window.location.href = "/welcome";
-          return res.json();
-        }
+        return res.json();
       })
 
       .then((res) => {
-        if (res.matchedProfile) redirect("/welcome/" + res.profileId);
-
-        // else (
-        //   redirect("/submitted/"+res.profileId)
-        // )
+        console.log(res)
+        if (res.matchedProfile) redirect("/Knot/" + res.matchedProfile._id);
+        else redirect("/submitted/" + res.profileId);
       })
-        
 
       .catch((error) => {
         console.log(error);
