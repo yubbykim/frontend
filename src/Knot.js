@@ -15,7 +15,7 @@ const loginInfo = {
 const handleClick = () => {
   console.log("sending request")
   const request = new Request("http://localhost:3000/profiles", {
-    method: "post",
+    method: "get",
     body: JSON.stringify(loginInfo),
     headers: {
         Accept: "application/json, text/plain, */*",
@@ -28,8 +28,6 @@ fetch(request)
         if (res.status === 201) {
           console.log("successful!")
             return res.json()
-
-
         }
     })
 
@@ -38,16 +36,17 @@ fetch(request)
     });
 }
 
-function Home() {
+
+function Onboard() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-         Hello world.
+         Onboard!!!!!
         </p>
         <TextField id="outlined-basic" label="Name" variant="outlined" />
-        <Button variant="contained" onClick={handleClick}>Register!</Button>
+        <Button variant="contained" onClick={handleClick}>Onboard!</Button>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -61,4 +60,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Onboard;
