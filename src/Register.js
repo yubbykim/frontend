@@ -64,7 +64,7 @@ function Register() {
     <div className="App">
       <header className="App-header">
         <form onSubmit={handleClick}>
-          <Stack direction="row">
+          <Stack direction="row" spacing={2} style={{ marginLeft: '180px' }}>
             <TextField
               id="name"
               label="Full Name"
@@ -80,7 +80,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Stack>
-          <Stack direction="row">
+          <Stack direction="row" spacing={2} style={{ marginTop: '10px', marginLeft: '180px' }}>
             <TextField
               id="password"
               label="Password"
@@ -104,7 +104,8 @@ function Register() {
               id="experience"
             >
               {" "}
-              <Stack direction="row">
+              <Stack direction="row" spacing={2}>
+                {/* First row */}
                 <FormControlLabel
                   value="Food/Restaurant Exploring"
                   control={<Radio />}
@@ -120,7 +121,8 @@ function Register() {
                   onChange={(e) => setExperience(e.target.value)}
                 />
               </Stack>
-              <Stack direction="row">
+              <Stack direction="row" spacing={2}>
+                {/* Second row */}
                 <FormControlLabel
                   value="Arts & Crafts"
                   control={<Radio />}
@@ -128,6 +130,7 @@ function Register() {
                   name="experience"
                   onChange={(e) => setExperience(e.target.value)}
                 />
+                <FormControlLabel style={{ visibility: 'hidden' }} label="" control={<Radio />} />
                 <FormControlLabel
                   value="Music & Dancing"
                   control={<Radio />}
@@ -147,7 +150,7 @@ function Register() {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           />
-          <Button variant="contained" type="submit">
+          <Button style={{backgroundColor: "blue", marginTop: '10px', marginLeft: '15px' }} variant="contained" type="submit">
             Let's Tie the Knot!
           </Button>
         </form>
